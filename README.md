@@ -1,7 +1,5 @@
 # PySideQGLViewer
 
-[![Build Status](https://travis-ci.org/fredboudon/PyQGLViewer.svg?branch=master)](https://travis-ci.org/fredboudon/PyQGLViewer) [![Build status](https://ci.appveyor.com/api/projects/status/7jo1h7frejsot8uh/branch/master?svg=true)](https://ci.appveyor.com/project/fredboudon/pyqglviewer/branch/master)
-
 ## Presentation
 
 
@@ -31,7 +29,7 @@ A conda version compatible with PyQt5 and Python 3 is available in the channel f
 A simple example of use of PyQGLViewer is
 
 ```python
-from PySide.QtGui import *
+from PySide2.QtGui import *
 from PySideQGLViewer import *
 from qgllogo import draw_qgl_logo
 
