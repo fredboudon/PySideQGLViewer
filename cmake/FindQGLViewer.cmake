@@ -1,0 +1,22 @@
+
+find_library(QGLViewer_Lib QGLViewer REQUIRED $ENV{CONDA_PREFIX}/lib)
+message(STATUS "QGLViewer Lib:           ${QGLViewer_Lib}")
+find_path(QGLViewer_Headers QGLViewer/qglviewer.h REQUIRED $ENV{CONDA_PREFIX}/include)
+message(STATUS "QGLViewer Headers:             ${QGLViewer_Headers}")
+file(READ ${QGLViewer_Headers}/QGLViewer/config.h var)
+
+file(STRINGS "${QGLViewer_Headers}/QGLViewer/config.h" _VERSION_HPP_CONTENTS REGEX "#define QGLVIEWER_VERSION 0x")
+
+set(_VERSION_REGEX "([0-9]+)")
+if("${_VERSION_HPP_CONTENTS}" MATCHES ".*#define QGLVIEWER_VERSION 0x${_VERSION_REGEX}.*")
+  set(QGLVIEWER_VERSION "${CMAKE_MATCH_1}")
+endif()
+unset(_VERSION_HPP_CONTENTS)
+
+math(EXPR QGLVIEWER_MAJOR_VERSION "${QGLVIEWER_VERSION} / 10000")
+math(EXPR QGLVIEWER_MINOR_VERSION "${QGLVIEWER_VERSION} / 100 % 100")
+math(EXPR QGLVIEWER_SUBMINOR_VERSION "${QGLVIEWER_VERSION} % 100")
+
+set(QGLVIEWER_VERSION "${QGLVIEWER_MAJOR_VERSION}.${QGLVIEWER_MINOR_VERSION}.${QGLVIEWER_SUBMINOR_VERSION}")
+
+message(STATUS "QGLViewer Version:             ${QGLVIEWER_VERSION}")

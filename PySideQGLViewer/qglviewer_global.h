@@ -6,10 +6,10 @@
 // Define PYTHON_BINDINGS this will be used in some part of c++ to skip problematic parts
 #define PYTHON_BINDINGS
 
-
+#include <QMouseEvent>
 #include <QGLViewer/camera.h>
 #include <QGLViewer/constraint.h>
-#include <QGLViewer/domUtils.h>
+// #include <QGLViewer/domUtils.h>
 #include <QGLViewer/frame.h>
 #include <QGLViewer/keyFrameInterpolator.h>
 #include <QGLViewer/manipulatedFrame.h>

@@ -13,20 +13,19 @@
 set(PySideQGLViewer_SRC
     # individual classes
     ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/qglviewer_wrapper.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/camera_wrapper.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/constraint_wrapper.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/axisplaneconstraint_wrapper.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/localconstraint_wrapper.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/worldconstraint_wrapper.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/cameraconstraint_wrapper.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/domutils_wrapper.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/frame_wrapper.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/keyframeinterpolator_wrapper.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/manipulatedframe_wrapper.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/manipulatedcameraframe_wrapper.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/mousegrabber_wrapper.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/quaternion_wrapper.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/vec_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/qglviewer_camera_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/qglviewer_constraint_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/qglviewer_axisplaneconstraint_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/qglviewer_localconstraint_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/qglviewer_worldconstraint_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/qglviewer_cameraconstraint_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/qglviewer_frame_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/qglviewer_keyframeinterpolator_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/qglviewer_manipulatedframe_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/qglviewer_manipulatedcameraframe_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/qglviewer_mousegrabber_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/qglviewer_quaternion_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/qglviewer_vec_wrapper.cpp
     # global module wrapper
     ${CMAKE_CURRENT_BINARY_DIR}/PySideQGLViewer/pysideqglviewer_module_wrapper.cpp
 )
@@ -34,6 +33,7 @@ set(PySideQGLViewer_SRC
 
 # includes necessary to parse and build the classes specified on typesystem
 set(PySideQGLViewer_include_paths
+    $ENV{CONDA_PREFIX}/include
     $<JOIN:$<TARGET_PROPERTY:PySideQGLViewer,INTERFACE_INCLUDE_DIRECTORIES>,${PATH_SEP}>
 )
 
@@ -43,11 +43,14 @@ set(PySideQGLViewer_typesystem_paths # PySide path, this variable was exposed by
 )
 
 # Include flags/path that will be set in 'target_include_directories'
-set(PySideQGLViewer_target_include_directories ${CMAKE_SOURCE_DIR}/src $ENV${CONDA_PREFIX}/include/QGLViewer/)
+set(PySideQGLViewer_target_include_directories 
+    ${CMAKE_SOURCE_DIR}/src 
+    $ENV{CONDA_PREFIX}/include/
+)
 
 # Libraries that will be necessary to link the target, this will used in the command 'target_link_libraries'
 set(PySideQGLViewer_target_link_libraries
-    QGLViewer
+    ${QGLViewer_Lib}
     Qt${Qt_VERSION_MAJOR}::Core
     Qt${Qt_VERSION_MAJOR}::Gui
     Qt${Qt_VERSION_MAJOR}::Widgets

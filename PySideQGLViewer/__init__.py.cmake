@@ -12,7 +12,6 @@
 import sys
 import os
 
-__all__ = ['KDDockWidgets']
 
 def setupLibraryPath():
     if sys.platform != 'win32':
