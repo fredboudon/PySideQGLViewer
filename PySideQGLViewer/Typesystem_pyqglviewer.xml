@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!-- The package name -->
+<typesystem package="PySideQGLViewer">
+    <!-- Pre-defined typesystem that contains types used by our class.
+        PySide has one typesystem for each module, so here we use only the
+        Widgets typesystem because it already includes gui and core
+        typesystems -->
+    <load-typesystem name="typesystem_widgets.xml" generate="no"/>
+ 
+    <!-- Our classes are declared in a namespace, so we need to define one -->
+    <namespace-type name="qglviewer" visible="false">
+        <!-- This is used in a public virtual pure function.
+             We need to declare it otherwise shiboken will ignore the
+             function and will fail to create a wrapper -->
+        <!--primitive-type name="DropAreaWithCentralFrame"-->
+ 
+ 
+        <!-- Export our classes
+             For classes we can use two types:
+                object-type: class that does not have a copy-constructor
+                             and cannot be passed as value to functions;
+                value-type: class that can be passed as value for functions
+ 
+             Here we only use 'object-type' since all our classes are
+             derived from QWidget.
+         -->
+        <object-type name="Camera" >
+            <enum-type name="Type" />
+        </object-type>
+
+        <object-type name="Constraint" />
+
+        <object-type name="AxisPlaneConstraint" >
+            <enum-type name="Type"  />
+        </object-type>
+        <object-type name="LocalConstraint" />
+        <object-type name="WorldConstraint" />
+        <object-type name="CameraConstraint" />
+        <object-type name="DomUtils" />
+        <object-type name="Frame" />
+        <object-type name="KeyFrameInterpolator" />
+        <object-type name="ManipulatedFrame" />
+        <object-type name="ManipulatedCameraFrame" />
+        <object-type name="MouseGrabber" />
+        <object-type name="Quaternion" />
+        <object-type name="Vec" />
+    </namespace-type>
+ 
+ 
+    <object-type name="QGLViewer" >
+        <enum-type name="KeyboardAction" />
+        <enum-type name="MouseHandler"  />
+        <enum-type name="ClickAction"  />
+        <enum-type name="MouseAction"  />
+    </object-type>
+ 
+</typesystem>
